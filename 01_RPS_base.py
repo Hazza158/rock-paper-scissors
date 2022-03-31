@@ -5,8 +5,7 @@ def check_rounds():
 
     while True:
         response = input("how many rounds: ")
-
-        round_error = "please type either <enter> or an integer that is moer than 0"
+        round_error = "please type either <enter> or an integer that is more than 0"
         # if infinite mode is not chosen, chech response
         # is an integer that is more than 0 
         if response != "":
@@ -60,19 +59,22 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 
 # ask user for # of rounds then loop...
 rounds_played = 0
+mode = "regular"
 choose_instruction = "please choose rock (r), paper (p), or scissors (s)"
 
 # ask user for # of rounds, <enter> for infinite mode 
 rounds = check_rounds()
+if rounds == "":
+    mode = "infinite"
+    rounds = 10
 
 end_game = "no"
 while end_game == "no":
 
     #rounds heading
     print()
-    if rounds == "":
+    if mode == "infinite":
         heading = "continuous mode: round {}".format(rounds_played + 1)
-        choose = input("{} or 'xxx' to end: ".format(choose_instruction))
         
     
     else:
@@ -86,18 +88,20 @@ while end_game == "no":
     choose = choice_checker(choose_instruction, rps_list, choose_error)
 
     # end game if exit code is typed 
-    if choose == "xxx":
+    if choose == "xxx" or rounds_played + 1 == rounds:
         break
 
     
-
     # rest of loop / game
     print("you chose {}".format(choose))
 
     rounds_played += 1
 
+    if mode == "infinite":
+        rounds += 1
+
 print()
 print("Thank you for playing")
 
-# ask user if thy want to see their game history
+# ask user if they want to see their game history
 # if 'yes' show game history
