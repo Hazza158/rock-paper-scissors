@@ -87,6 +87,13 @@ while end_game == "no":
     # ask user for choice and check its valid
     choose = choice_checker(choose_instruction, rps_list, choose_error)
 
+    # get computer choice
+    comp_choice = random.choice(rps_list[:-1])
+    print("Comp Choice: ", comp_choice)
+
+    # compare choices
+    
+
     # end game if exit code is typed 
     if choose == "xxx" or rounds_played + 1 == rounds:
         break
