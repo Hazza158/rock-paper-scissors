@@ -115,9 +115,8 @@ while end_game == "no":
                 
             else:
                 result = "you win"
-                
-            print("you chose {}, the computer chose {}. \nResult: {}".format(user_choice, comp_choice, result))
-
+        
+                    
         comp_index += 1
         print()
         
