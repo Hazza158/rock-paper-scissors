@@ -60,7 +60,6 @@ rps_list = ["rock", "paper", "scissors", "xxx"]
 # ask user for # of rounds then loop...
 rounds_played = 0
 mode = "regular"
-
 # initialise lost / drawn counters
 rounds_lost = 0
 rounds_drawn = 0
@@ -96,10 +95,15 @@ while end_game == "no":
 
     # compare choices
 
+    # end game if exit code is typed 
+    if user_choice == "xxx" or rounds_played + 1 == rounds:
+        break
+
     # compare options...
     if comp_choice == user_choice:
         result = "tie"
         rounds_drawn += 1
+
     elif comp_choice == "scissors" and user_choice == "rock":
         result = "won"
         
@@ -111,6 +115,7 @@ while end_game == "no":
         
     else:
         result = "lost"
+        rounds_lost += 1
     
     if result == "tie":
         feedback = "its a tie"
@@ -118,17 +123,9 @@ while end_game == "no":
         feedback = "{} vs {} - you {}".format(user_choice, comp_choice, result)
 
     print("you chose {}, the computer chose {}. \nResult: {}".format(user_choice, comp_choice, result))
-                    
-         
-
-    # end game if exit code is typed 
-    if user_choice == "xxx" or rounds_played + 1 == rounds:
-        break
 
     
-    # rest of loop / game
-    print("you chose {}".format(user_choice))
-
+    # rest of loop
     rounds_played += 1
 
     if mode == "infinite":
@@ -139,3 +136,15 @@ print("Thank you for playing")
 
 # ask user if they want to see their game history
 # if 'yes' show game history
+
+# show game statistics
+# quick calculations (stats)
+rounds_won = rounds_played - rounds_lost - rounds_drawn
+
+# end of game statements
+print()
+print("\t**** End Game Summary ****")
+print()
+print("Won: {} \t|\t Lost: {} \t|\t Draw: {}".format(rounds_won, rounds_lost, rounds_drawn))
+print()
+print("Thanks for playing")
