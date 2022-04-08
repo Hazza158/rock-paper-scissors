@@ -43,8 +43,47 @@ def choice_checker(question, valid_list, error):
         print(error)
         print()
 
+def yes_no(question):
+    valid = False
+    while not valid:
+        response = input(question).lower()
+        
+        if response == "yes" or response == "y":
+            response = "yes"
+            return response
+            
+        
+        elif response == "no" or response == "n":
+            response = "no"
+            return response
+        
+        else:
+            print("please answer yes / no")
+
+def instructions():
+    print("**** How to Play ****")
+    print()
+    print("1) Choose amount of rounds or press <enter> for infinite mode")
+    print()
+    print("2) For each round, choose from rock / paper / scissors(or xxx to quit)"
+    "You can type r / p / s / x if you dont want to type the entire word")
+    print()
+    print("3) The rules are:")
+    print("- rock beats scissors")
+    print("- paper beats rock")
+    print("- scissors beats paper")
+    print()
+    print("\t***Good luck, have fun***")
+    print()
+    return "" 
+
+played_before = yes_no("have you played the game before?")
 
 
+if played_before == "no": 
+    instructions()
+    
+print("program continues")
 # main routine goes here
 
 
@@ -157,7 +196,7 @@ percent_tie = rounds_drawn / rounds_played * 100
 
 
 print()
-print("**** Game History ****")
+print("\t**** Game History ****")
 for game in game_summary:
     print(game)
 
