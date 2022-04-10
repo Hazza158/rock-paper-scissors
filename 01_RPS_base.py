@@ -1,5 +1,5 @@
 import random
-game_summary = []
+
 # functions go here
 def check_rounds():
 
@@ -65,8 +65,8 @@ def instructions():
     print()
     print("1) Choose amount of rounds or press <enter> for infinite mode")
     print()
-    print("2) For each round, choose from rock / paper / scissors(or xxx to quit)"
-    "You can type r / p / s / x if you dont want to type the entire word")
+    print("2) For each round, choose from rock / paper / scissors(or xxx to quit)")
+    print("   You can type r / p / s / x if you dont want to type the entire word")
     print()
     print("3) The rules are:")
     print("- rock beats scissors")
@@ -76,25 +76,12 @@ def instructions():
     print("\t***Good luck, have fun***")
     print()
     return "" 
-
-played_before = yes_no("have you played the game before?")
-
-
-if played_before == "no": 
-    instructions()
-    
-print("program continues")
-# main routine goes here
+ 
 
 
 # lists of valid responses
 yes_no_list = ["yes", "no"]
 rps_list = ["rock", "paper", "scissors", "xxx"]
-
-
-# ask user if they have played before.
-# if "yes", show instructions
-
 
 # ask user for # of rounds then loop...
 rounds_played = 0
@@ -102,6 +89,16 @@ mode = "regular"
 # initialise lost / drawn counters
 rounds_lost = 0
 rounds_drawn = 0
+
+game_summary = []
+
+# ask user if they have played before.
+# if "yes", show instructions
+played_before = yes_no("have you played the game before?")
+
+
+if played_before == "no": 
+    instructions()
 
 # ask user for # of rounds, <enter> for infinite mode 
 rounds = check_rounds()
@@ -122,8 +119,8 @@ while end_game == "no":
         heading = "round {} of {}".format(rounds_played + 1, rounds)
         
     print(heading)
-    user_choice_instruction = "user_choice rock / paper / scissors (r/p/s)"
-    user_choice_error = "please user_choice rock / paper / scissors (or xxx to quit)"
+    user_choice_instruction = "choose rock / paper / scissors (r/p/s)"
+    user_choice_error = "please choose rock / paper / scissors (or xxx to quit)"
 
     # ask user for choice and check its valid
     user_choice = choice_checker(user_choice_instruction, rps_list, user_choice_error)
@@ -161,7 +158,13 @@ while end_game == "no":
     else:
         feedback = "{} vs {} - you {}".format(user_choice, comp_choice, result)
 
-    print("you chose {}, the computer chose {}. \nResult: {}".format(user_choice, comp_choice, result))
+
+    outcome = "round {}: {}".format(rounds_played + 1, feedback)
+
+   
+    game_summary.append(outcome)
+
+    print(feedback)
 
     
     # rest of loop
@@ -174,18 +177,6 @@ print()
 print("Thank you for playing")
 
 # ask user if they want to see their game history
-# if 'yes' show game history
-for item in range (0, 5):
-    result = input("choose result: ")
-
-    outcome = "round {}: {}".format(item, result)
-
-    if result == "lost":
-        rounds_lost += 1
-    elif result == "tie":
-        rounds_drawn += 1
-    
-    game_summary.append(outcome)
 
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
