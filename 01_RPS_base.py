@@ -69,9 +69,10 @@ def instructions():
     print("   You can type r / p / s / x if you dont want to type the entire word")
     print()
     print("3) The rules are:")
-    print("- rock beats scissors")
-    print("- paper beats rock")
-    print("- scissors beats paper")
+    print()
+    print(" - rock beats scissors")
+    print(" - paper beats rock")
+    print(" - scissors beats paper")
     print()
     print("\t***Good luck, have fun***")
     print()
@@ -122,6 +123,9 @@ while end_game == "no":
     user_choice_instruction = "choose rock / paper / scissors (r/p/s)"
     user_choice_error = "please choose rock / paper / scissors (or xxx to quit)"
 
+
+    if rounds_played == rounds:
+        break
     # ask user for choice and check its valid
     user_choice = choice_checker(user_choice_instruction, rps_list, user_choice_error)
 
@@ -132,7 +136,7 @@ while end_game == "no":
     # compare choices
 
     # end game if exit code is typed 
-    if user_choice == "xxx" or rounds_played + 1 == rounds:
+    if user_choice == "xxx":
         break
 
     # compare options...
@@ -188,6 +192,7 @@ percent_tie = rounds_drawn / rounds_played * 100
 
 print()
 print("\t**** Game History ****")
+print()
 for game in game_summary:
     print(game)
 
@@ -195,7 +200,7 @@ for game in game_summary:
 print()
 
 # displays game stats with % values to the nearest whole number
-print("\t***** Game Statistics *****")
+print("\t**** Game Statistics ****")
 print()
 print("Win: {}, ({:.0f}%)\nLoss: {}, ({:.0f}%)\nTie: {}, ({:.0f}%)".format(rounds_won, percent_win, rounds_lost, percent_lose, rounds_drawn, percent_tie))
 
